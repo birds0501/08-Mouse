@@ -59,5 +59,10 @@ img {
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+.scroll-area {
+  padding: 10%;
+  line-height: 2;
 }

@@ -16,16 +16,19 @@ $(function () {
   let my = 0;
   let speed = 0.008;
 
+  //함수를 3개 만들기
+  //1.마우스 좌표값 받아오는 함수
+  //2.오브젝트를 움직이게 하는 함수
+  //3.1번과 2번을 실행시키는 함수
+
   //마우스가 움직일 때 좌표값 받아오기
   $window.on("mousemove", function (e) {
     //마우스 좌표의 시작지점을 화면믜 정 중앙으로 이동
     x = e.pageX - $window.outerWidth() / 2;
     y = e.pageY - $window.outerHeight() / 2;
-    //x = 0일 때,
-    //0 = 0 - 960
-    // -960
   });
 
+  let movingObj;
   moving();
 
   //마우스의 기본 좌표값을 기준으로 어떤 값을 만들어내자
@@ -50,7 +53,12 @@ $(function () {
       transform: `translate(${mx * 0.5}px, ${-my * 0.7}px)`,
       filter: `blur(${mx * 0.05}px)`,
     });
-
-    requestAnimationFrame(moving);
+    //부드럽게 반복
+    movingObj = requestAnimationFrame(moving);
   }
+
+  $objWrap.on("click", function () {
+    cancelAnimationFrame(movingObj);
+    setTimeout(moving, 2000);
+  });
 });
